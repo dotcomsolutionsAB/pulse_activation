@@ -314,7 +314,8 @@ body.nav-open{ overflow:hidden; }
 .hero-content{
   position:relative; z-index:2;
   width:100%;
-  padding: clamp(140px, 22vw, 220px) 0 clamp(56px, 8vw, 96px);
+  padding-top: clamp(140px, 22vw, 220px);
+  padding-bottom: clamp(56px, 8vw, 96px);
 }
 .hero-content .eyebrow{ color: var(--blue-2); }
 .hero h1{
@@ -353,7 +354,7 @@ body.nav-open{ overflow:hidden; }
   overflow:hidden;
   background: var(--black);
 }
-.page-hero .hero-content{ padding: clamp(150px,20vw,200px) 0 64px; }
+.page-hero .hero-content{ padding-top: clamp(150px,20vw,200px); padding-bottom: 64px; }
 .page-hero h1{ font-size: clamp(34px, 6vw, 64px); max-width:20ch; }
 
 /* Category hero — split layout, distinct from the full-bleed home hero */
