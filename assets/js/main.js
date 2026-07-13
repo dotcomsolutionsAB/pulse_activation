@@ -32,10 +32,12 @@
   }
 
   /* ---------- Active nav link based on current page ---------- */
-  var path = window.location.pathname.split("/").pop() || "index.html";
+  var segs = window.location.pathname.split("/").filter(Boolean);
+  var current = segs.length ? segs[0] : "home";
   document.querySelectorAll("[data-nav-link]").forEach(function (a) {
     var target = a.getAttribute("data-nav-link");
-    if (target === path) a.classList.add("active");
+    if (target === current) a.classList.add("active");
+    else a.classList.remove("active");
   });
 
   /* ---------- Reveal on scroll ---------- */
