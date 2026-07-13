@@ -248,7 +248,7 @@ p:last-child{ margin-bottom:0; }
   z-index: 999;
   display:flex; flex-direction:column;
   align-items:center; justify-content:center;
-  gap: 8px;
+  gap: 2px;
   opacity:0; visibility:hidden;
   transform: translateY(-12px);
   transition: opacity .35s var(--ease), transform .35s var(--ease), visibility .35s;
@@ -256,19 +256,19 @@ p:last-child{ margin-bottom:0; }
 .mobile-nav.is-open{ opacity:1; visibility:visible; transform: translateY(0); }
 .mobile-nav a{
   font-family:'Rajdhani',sans-serif;
-  font-size: 30px;
-  font-weight:700;
+  font-size: 19px;
+  font-weight:600;
   text-transform:uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   color: var(--text);
-  padding: 14px 0;
+  padding: 9px 0;
 }
 .mobile-nav a.active{ color: var(--blue-2); }
-.mobile-nav .mobile-cta{ margin-top: 26px; }
+.mobile-nav .mobile-cta.btn{ margin-top: 18px; padding: 12px 26px; font-size:12.5px; }
 .mobile-nav .mobile-contact{
-  margin-top:34px; text-align:center; color:var(--muted); font-size:14px;
+  margin-top:20px; text-align:center; color:var(--muted); font-size:12.5px;
 }
-.mobile-nav .mobile-contact a{ font-size:14px; color:var(--blue-2); padding:4px 0; }
+.mobile-nav .mobile-contact a{ font-size:12.5px; color:var(--blue-2); padding:3px 0; }
 
 body.nav-open{ overflow:hidden; }
 
