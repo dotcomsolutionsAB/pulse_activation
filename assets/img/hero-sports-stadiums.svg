@@ -1,0 +1,95 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070a0f"/>
+      <stop offset="55%" stop-color="#0a0e15"/>
+      <stop offset="100%" stop-color="#0c121b"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#29b6ff" stop-opacity="0.38"/>
+      <stop offset="60%" stop-color="#29b6ff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#29b6ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#5ecbff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#5ecbff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="1.4" cy="1.4" r="1.4" fill="#29b6ff" fill-opacity="0.35"/>
+    </pattern>
+    <radialGradient id="dotsFade" cx="70%" cy="36%" r="55%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="70%" stop-color="#ffffff" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="dotsMask">
+      <rect width="1920" height="1080" fill="url(#dotsFade)"/>
+    </mask>
+    <filter id="blurLg" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="90"/>
+    </filter>
+    <filter id="blurMd" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+    <linearGradient id="leftFade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#05070a" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#05070a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+  <circle cx="1500" cy="260" r="480" fill="url(#glowA)" filter="url(#blurLg)"/>
+  <circle cx="1720" cy="720" r="320" fill="url(#glowB)" filter="url(#blurLg)"/>
+  <circle cx="200" cy="900" r="260" fill="url(#glowB)" filter="url(#blurMd)" opacity="0.5"/>
+  <rect width="1920" height="1080" fill="url(#dots)" mask="url(#dotsMask)"/>
+
+
+  <path d="M -100 660 L 260 660 L 320 540 L 400 780 L 470 660 L 1020 660"
+        fill="none" stroke="#29b6ff" stroke-width="2.5" stroke-opacity="0.5"
+        stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M 1020 660 L 1180 660 L 1230 580 L 1290 740 L 1340 660 L 2020 660"
+        fill="none" stroke="#5ecbff" stroke-width="2.5" stroke-opacity="0.28"
+        stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+
+
+  <g transform="translate(1260,200)" opacity="0.9">
+    <!-- stadium bowl -->
+    <g stroke="#5ecbff" stroke-opacity="0.22" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+      <ellipse cx="330" cy="260" rx="330" ry="150"/>
+      <ellipse cx="330" cy="260" rx="250" ry="110"/>
+      <ellipse cx="330" cy="260" rx="170" ry="72"/>
+      <path d="M0 260 C0 340 148 410 330 410 C512 410 660 340 660 260"/>
+    </g>
+    <!-- floodlight towers -->
+    <g stroke="#29b6ff" stroke-opacity="0.30" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+      <path d="M20 150 L20 -40"/>
+      <rect x="-26" y="-70" width="92" height="34" rx="4"/>
+      <path d="M-40 -80 L-26 -54 M-2 -92 L4 -60 M40 -80 L26 -54"/>
+      <path d="M640 150 L640 -40"/>
+      <rect x="594" y="-70" width="92" height="34" rx="4"/>
+      <path d="M580 -80 L594 -54 M622 -92 L628 -60 M660 -80 L646 -54"/>
+    </g>
+    <!-- ball -->
+    <g transform="translate(230,480)" stroke="#29b6ff" stroke-opacity="0.30" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+      <circle cx="66" cy="66" r="64"/>
+      <path d="M66 10 L104 44 L90 92 L42 92 L28 44 Z"/>
+      <path d="M66 10 L66 -6 M104 44 L130 32 M90 92 L106 134 M42 92 L26 134 M28 44 L2 32"/>
+    </g>
+    <!-- pennant flag -->
+    <g transform="translate(500,420)" stroke="#29b6ff" stroke-opacity="0.30" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+      <path d="M0 0 L0 190"/>
+      <path d="M0 10 L120 52 L0 92 Z"/>
+    </g>
+  </g>
+
+  <circle cx="1720" cy="180" r="4" fill="#5ecbff" fill-opacity="0.5"/>
+  <circle cx="1790" cy="420" r="3" fill="#29b6ff" fill-opacity="0.5"/>
+  <circle cx="1620" cy="880" r="4" fill="#5ecbff" fill-opacity="0.4"/>
+  <circle cx="1860" cy="650" r="3" fill="#29b6ff" fill-opacity="0.45"/>
+
+
+  <rect width="1000" height="1080" fill="#05070a" fill-opacity="0.35"/>
+  <rect width="1920" height="1080" fill="url(#leftFade)"/>
+
+</svg>

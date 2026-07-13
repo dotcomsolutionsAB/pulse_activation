@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070a0f"/>
+      <stop offset="55%" stop-color="#0a0e15"/>
+      <stop offset="100%" stop-color="#0c121b"/>
+    </linearGradient>
+    <radialGradient id="glowA" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#29b6ff" stop-opacity="0.38"/>
+      <stop offset="60%" stop-color="#29b6ff" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#29b6ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowB" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#5ecbff" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#5ecbff" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="dots" width="34" height="34" patternUnits="userSpaceOnUse">
+      <circle cx="1.4" cy="1.4" r="1.4" fill="#29b6ff" fill-opacity="0.35"/>
+    </pattern>
+    <radialGradient id="dotsFade" cx="72%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="1"/>
+      <stop offset="70%" stop-color="#ffffff" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="dotsMask">
+      <rect width="1920" height="1080" fill="url(#dotsFade)"/>
+    </mask>
+    <filter id="blurLg" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="90"/>
+    </filter>
+    <filter id="blurMd" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+    <linearGradient id="leftFade" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#05070a" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#05070a" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bgGrad)"/>
+  <circle cx="1420" cy="300" r="480" fill="url(#glowA)" filter="url(#blurLg)"/>
+  <circle cx="1680" cy="760" r="320" fill="url(#glowB)" filter="url(#blurLg)"/>
+  <circle cx="220" cy="880" r="260" fill="url(#glowB)" filter="url(#blurMd)" opacity="0.5"/>
+  <rect width="1920" height="1080" fill="url(#dots)" mask="url(#dotsMask)"/>
+
+
+  <path d="M -100 640 L 260 640 L 320 520 L 400 760 L 470 640 L 1000 640"
+        fill="none" stroke="#29b6ff" stroke-width="2.5" stroke-opacity="0.5"
+        stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+  <path d="M 1000 640 L 1180 640 L 1230 560 L 1290 720 L 1340 640 L 2020 640"
+        fill="none" stroke="#5ecbff" stroke-width="2.5" stroke-opacity="0.28"
+        stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+
+
+  <g transform="translate(1280,140)" opacity="0.9">
+    <!-- radiating engagement rings -->
+    <g stroke="#5ecbff" stroke-opacity="0.22" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke">
+      <circle cx="330" cy="330" r="90"/>
+      <circle cx="330" cy="330" r="150"/>
+      <circle cx="330" cy="330" r="215"/>
+    </g>
+    <!-- spark / pulse center -->
+    <path d="M330 260 L350 320 L400 330 L350 340 L330 400 L310 340 L260 330 L310 320 Z"
+          fill="#5ecbff" fill-opacity="0.35" stroke="#29b6ff" stroke-opacity="0.5" stroke-width="4" vector-effect="non-scaling-stroke"/>
+    <!-- people group engaging -->
+    <g stroke="#29b6ff" stroke-opacity="0.30" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke" transform="translate(40,470)">
+      <circle cx="60" cy="40" r="34"/>
+      <path d="M0 170 C0 110 30 90 60 90 C90 90 120 110 120 170"/>
+      <circle cx="220" cy="20" r="40"/>
+      <path d="M150 170 C150 100 185 76 220 76 C255 76 290 100 290 170"/>
+      <circle cx="390" cy="46" r="32"/>
+      <path d="M336 170 C336 116 362 98 390 98 C418 98 444 116 444 170"/>
+    </g>
+    <circle cx="330" cy="330" r="8" fill="#29b6ff" fill-opacity="0.5" stroke="none"/>
+  </g>
+
+  <circle cx="1720" cy="180" r="4" fill="#5ecbff" fill-opacity="0.5"/>
+  <circle cx="1790" cy="420" r="3" fill="#29b6ff" fill-opacity="0.5"/>
+  <circle cx="1620" cy="880" r="4" fill="#5ecbff" fill-opacity="0.4"/>
+  <circle cx="1860" cy="650" r="3" fill="#29b6ff" fill-opacity="0.45"/>
+
+
+  <rect width="1000" height="1080" fill="#05070a" fill-opacity="0.35"/>
+  <rect width="1920" height="1080" fill="url(#leftFade)"/>
+
+</svg>
