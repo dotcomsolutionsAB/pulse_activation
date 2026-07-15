@@ -208,13 +208,6 @@ p:last-child{ margin-bottom:0; }
 .nav-links a:hover::after, .nav-links a.active::after{ right:0; }
 
 .nav-item{ position:relative; }
-.nav-item::after{
-  content:"";
-  position:absolute;
-  top:100%; left:50%;
-  transform:translateX(-50%);
-  width:232px; height:20px;
-}
 .nav-item > .dropdown-trigger{
   display:flex; align-items:center; gap:5px;
   font-family:'Rajdhani',sans-serif;
@@ -233,21 +226,29 @@ p:last-child{ margin-bottom:0; }
 .nav-item:hover > .dropdown-trigger svg{ transform: rotate(180deg); }
 .nav-dropdown{
   position:absolute; top: 100%; left:50%;
-  transform: translateX(-50%) translateY(6px);
+  transform: translateX(-50%) translateY(0);
   min-width: 232px;
-  margin-top: 14px;
+  margin-top: 0;
+  padding-top: 14px;
+  opacity:0; visibility:hidden; pointer-events:none;
+  transition: opacity .2s var(--ease), visibility .2s;
+  z-index: 1001;
+}
+.nav-dropdown-panel{
   background: rgba(8,11,16,0.98);
   backdrop-filter: blur(16px) saturate(140%);
   border: 1px solid var(--line);
   border-radius: 12px;
   padding: 8px;
-  opacity:0; visibility:hidden; pointer-events:none;
-  transition: opacity .25s var(--ease), transform .25s var(--ease), visibility .25s;
   box-shadow: 0 24px 48px rgba(0,0,0,0.45);
-  z-index: 1001;
+  transform: translateY(-6px);
+  transition: transform .25s var(--ease);
 }
 .nav-item:hover .nav-dropdown, .nav-item:focus-within .nav-dropdown, .nav-item.is-open .nav-dropdown{
-  opacity:1; visibility:visible; pointer-events:auto; transform: translateX(-50%) translateY(0);
+  opacity:1; visibility:visible; pointer-events:auto;
+}
+.nav-item:hover .nav-dropdown-panel, .nav-item:focus-within .nav-dropdown-panel, .nav-item.is-open .nav-dropdown-panel{
+  transform: translateY(0);
 }
 .nav-item.is-open > .dropdown-trigger{ color: var(--text); }
 .nav-item.is-open > .dropdown-trigger svg{ transform: rotate(180deg); }
