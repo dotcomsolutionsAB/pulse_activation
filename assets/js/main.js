@@ -31,6 +31,25 @@
     });
   }
 
+  /* ---------- Desktop nav dropdowns (click/touch support) ---------- */
+  var navItems = document.querySelectorAll(".nav-item");
+  navItems.forEach(function (item) {
+    var trigger = item.querySelector(".dropdown-trigger");
+    if (!trigger) return;
+    trigger.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var isOpen = item.classList.contains("is-open");
+      navItems.forEach(function (other) { other.classList.remove("is-open"); });
+      if (!isOpen) item.classList.add("is-open");
+    });
+  });
+  document.addEventListener("click", function () {
+    navItems.forEach(function (item) { item.classList.remove("is-open"); });
+  });
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") navItems.forEach(function (item) { item.classList.remove("is-open"); });
+  });
+
   /* ---------- Active nav link based on current page ---------- */
   var segs = window.location.pathname.split("/").filter(Boolean);
   var current = segs.length ? segs[0] : "home";

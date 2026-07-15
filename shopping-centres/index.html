@@ -20,9 +20,24 @@
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="/" data-nav-link="home">Home</a>
+      <div class="nav-item">
+        <button class="dropdown-trigger" type="button">Services <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="nav-dropdown">
+      <a href="/quest/" data-nav-link="quest">Quest</a>
+      <a href="/lockbox/" data-nav-link="lockbox">Lockbox</a>
+      <a href="/digital-games/" data-nav-link="digital-games">Digital Games</a>
+        </div>
+      </div>
+      <div class="nav-item has-active">
+        <button class="dropdown-trigger" type="button">Industries <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="nav-dropdown">
       <a href="/shopping-centres/" data-nav-link="shopping-centres" class="active">Shopping Centres</a>
       <a href="/sports-stadiums/" data-nav-link="sports-stadiums">Sports &amp; Stadiums</a>
-      <a href="/hospitality-tourism/" data-nav-link="hospitality-tourism">Hospitality &amp; Tourism</a>
+      <a href="/hospitality/" data-nav-link="hospitality">Hospitality</a>
+      <a href="/tourism/" data-nav-link="tourism">Tourism</a>
+      <a href="/museums/" data-nav-link="museums">Museums</a>
+        </div>
+      </div>
       <a href="/awards-branding/" data-nav-link="awards-branding">Awards &amp; Branding</a>
       <a href="/contact/" data-nav-link="contact">Contact</a>
     </nav>
@@ -42,11 +57,26 @@
 <div class="mobile-nav" id="mobileNav">
   <nav class="mobile-nav-links">
     <a href="/" data-nav-link="home"><span class="num">01</span>Home<span class="arrow">→</span></a>
-    <a href="/shopping-centres/" data-nav-link="shopping-centres" class="active"><span class="num">02</span>Shopping Centres<span class="arrow">→</span></a>
-    <a href="/sports-stadiums/" data-nav-link="sports-stadiums"><span class="num">03</span>Sports &amp; Stadiums<span class="arrow">→</span></a>
-    <a href="/hospitality-tourism/" data-nav-link="hospitality-tourism"><span class="num">04</span>Hospitality &amp; Tourism<span class="arrow">→</span></a>
-    <a href="/awards-branding/" data-nav-link="awards-branding"><span class="num">05</span>Awards &amp; Branding<span class="arrow">→</span></a>
-    <a href="/contact/" data-nav-link="contact"><span class="num">06</span>Contact<span class="arrow">→</span></a>
+    <details class="mobile-nav-group">
+      <summary><span class="num">02</span>Services<svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+      <div class="mobile-nav-sub">
+        <a href="/quest/" data-nav-link="quest">Quest</a>
+        <a href="/lockbox/" data-nav-link="lockbox">Lockbox</a>
+        <a href="/digital-games/" data-nav-link="digital-games">Digital Games</a>
+      </div>
+    </details>
+    <details class="mobile-nav-group has-active" open>
+      <summary><span class="num">03</span>Industries<svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+      <div class="mobile-nav-sub">
+        <a href="/shopping-centres/" data-nav-link="shopping-centres" class="active">Shopping Centres</a>
+        <a href="/sports-stadiums/" data-nav-link="sports-stadiums">Sports &amp; Stadiums</a>
+        <a href="/hospitality/" data-nav-link="hospitality">Hospitality</a>
+        <a href="/tourism/" data-nav-link="tourism">Tourism</a>
+        <a href="/museums/" data-nav-link="museums">Museums</a>
+      </div>
+    </details>
+    <a href="/awards-branding/" data-nav-link="awards-branding"><span class="num">04</span>Awards &amp; Branding<span class="arrow">→</span></a>
+    <a href="/contact/" data-nav-link="contact"><span class="num">05</span>Contact<span class="arrow">→</span></a>
   </nav>
   <div class="mobile-nav-footer">
     <a href="/contact/" class="btn btn-primary mobile-cta">Start a Project</a>
@@ -184,11 +214,21 @@
         <p>Interactive experiences that drive engagement — fan engagement, experiential activations and venue experiences designed to increase participation, dwell time and measurable ROI.</p>
       </div>
       <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/quest/">Quest</a></li>
+          <li><a href="/lockbox/">Lockbox</a></li>
+          <li><a href="/digital-games/">Digital Games</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
         <h4>Industries</h4>
         <ul>
           <li><a href="/shopping-centres/">Shopping Centres</a></li>
           <li><a href="/sports-stadiums/">Sports &amp; Stadiums</a></li>
-          <li><a href="/hospitality-tourism/">Hospitality &amp; Tourism</a></li>
+          <li><a href="/hospitality/">Hospitality</a></li>
+          <li><a href="/tourism/">Tourism</a></li>
+          <li><a href="/museums/">Museums</a></li>
           <li><a href="/awards-branding/">Awards &amp; Branding</a></li>
         </ul>
       </div>

@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pulse Activations | Interactive Experiences That Drive Engagement</title>
-<meta name="description" content="Pulse Activations creates immersive experiential activations — fan engagement, shopping centre trails, stadium fan zones, hospitality experiences and award ceremony branding — that turn audiences into active participants.">
+<meta name="description" content="Pulse Activations creates immersive experiential activations — Quest trails, Lockbox challenges, digital games, shopping centres, sports & stadiums, hospitality, tourism, museums and award ceremony branding — that turn audiences into active participants.">
 <link rel="icon" href="/assets/img/logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -20,9 +20,24 @@
     </a>
     <nav class="nav-links" aria-label="Primary">
       <a href="/" data-nav-link="home" class="active">Home</a>
+      <div class="nav-item">
+        <button class="dropdown-trigger" type="button">Services <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="nav-dropdown">
+      <a href="/quest/" data-nav-link="quest">Quest</a>
+      <a href="/lockbox/" data-nav-link="lockbox">Lockbox</a>
+      <a href="/digital-games/" data-nav-link="digital-games">Digital Games</a>
+        </div>
+      </div>
+      <div class="nav-item">
+        <button class="dropdown-trigger" type="button">Industries <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="nav-dropdown">
       <a href="/shopping-centres/" data-nav-link="shopping-centres">Shopping Centres</a>
       <a href="/sports-stadiums/" data-nav-link="sports-stadiums">Sports &amp; Stadiums</a>
-      <a href="/hospitality-tourism/" data-nav-link="hospitality-tourism">Hospitality &amp; Tourism</a>
+      <a href="/hospitality/" data-nav-link="hospitality">Hospitality</a>
+      <a href="/tourism/" data-nav-link="tourism">Tourism</a>
+      <a href="/museums/" data-nav-link="museums">Museums</a>
+        </div>
+      </div>
       <a href="/awards-branding/" data-nav-link="awards-branding">Awards &amp; Branding</a>
       <a href="/contact/" data-nav-link="contact">Contact</a>
     </nav>
@@ -42,11 +57,26 @@
 <div class="mobile-nav" id="mobileNav">
   <nav class="mobile-nav-links">
     <a href="/" data-nav-link="home" class="active"><span class="num">01</span>Home<span class="arrow">→</span></a>
-    <a href="/shopping-centres/" data-nav-link="shopping-centres"><span class="num">02</span>Shopping Centres<span class="arrow">→</span></a>
-    <a href="/sports-stadiums/" data-nav-link="sports-stadiums"><span class="num">03</span>Sports &amp; Stadiums<span class="arrow">→</span></a>
-    <a href="/hospitality-tourism/" data-nav-link="hospitality-tourism"><span class="num">04</span>Hospitality &amp; Tourism<span class="arrow">→</span></a>
-    <a href="/awards-branding/" data-nav-link="awards-branding"><span class="num">05</span>Awards &amp; Branding<span class="arrow">→</span></a>
-    <a href="/contact/" data-nav-link="contact"><span class="num">06</span>Contact<span class="arrow">→</span></a>
+    <details class="mobile-nav-group">
+      <summary><span class="num">02</span>Services<svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+      <div class="mobile-nav-sub">
+        <a href="/quest/" data-nav-link="quest">Quest</a>
+        <a href="/lockbox/" data-nav-link="lockbox">Lockbox</a>
+        <a href="/digital-games/" data-nav-link="digital-games">Digital Games</a>
+      </div>
+    </details>
+    <details class="mobile-nav-group">
+      <summary><span class="num">03</span>Industries<svg class="chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></summary>
+      <div class="mobile-nav-sub">
+        <a href="/shopping-centres/" data-nav-link="shopping-centres">Shopping Centres</a>
+        <a href="/sports-stadiums/" data-nav-link="sports-stadiums">Sports &amp; Stadiums</a>
+        <a href="/hospitality/" data-nav-link="hospitality">Hospitality</a>
+        <a href="/tourism/" data-nav-link="tourism">Tourism</a>
+        <a href="/museums/" data-nav-link="museums">Museums</a>
+      </div>
+    </details>
+    <a href="/awards-branding/" data-nav-link="awards-branding"><span class="num">04</span>Awards &amp; Branding<span class="arrow">→</span></a>
+    <a href="/contact/" data-nav-link="contact"><span class="num">05</span>Contact<span class="arrow">→</span></a>
   </nav>
   <div class="mobile-nav-footer">
     <a href="/contact/" class="btn btn-primary mobile-cta">Start a Project</a>
@@ -61,7 +91,7 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero">
-    <div class="hero-media hero-img" style="background-image:url('/assets/img/hero-home.jpg');" aria-hidden="true"></div>
+    <div class="hero-media hero-img" style="background-image:url('/assets/img/hero-home.jpg');" data-yt-bg="WNwgewBTj1M" aria-hidden="true"></div>
     <div class="hero-scrim"></div>
     <div class="container hero-content">
       <span class="eyebrow">Experiential Activations</span>
@@ -118,9 +148,9 @@
       <div class="section-head">
         <span class="eyebrow">Industries</span>
         <h2>Built For Every Venue</h2>
-        <p class="lead">Four industries. One goal — turning audiences into active participants.</p>
+        <p class="lead">Six industries. One goal — turning audiences into active participants.</p>
       </div>
-      <div class="grid grid-4">
+      <div class="grid grid-3">
 
         <a href="/shopping-centres/" class="industry-card reveal">
           <img src="https://img.youtube.com/vi/WFkCioreFD4/hqdefault.jpg" alt="Shopping centre interactive activation">
@@ -142,12 +172,32 @@
           </div>
         </a>
 
-        <a href="/hospitality-tourism/" class="industry-card reveal">
-          <img src="https://img.youtube.com/vi/2zahwXhfjD8/hqdefault.jpg" alt="Hospitality and tourism guest experience">
+        <a href="/hospitality/" class="industry-card reveal">
+          <img src="https://img.youtube.com/vi/2zahwXhfjD8/hqdefault.jpg" alt="Hospitality guest experience">
           <span class="tag">Hospitality</span>
           <div class="body">
-            <h3>Hospitality &amp; Tourism</h3>
+            <h3>Hospitality</h3>
             <p>Transform guests into participants.</p>
+            <span class="link">Explore <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+
+        <a href="/tourism/" class="industry-card reveal">
+          <img src="https://img.youtube.com/vi/jnbS4aMotAo/hqdefault.jpg" alt="Tourism destination trail experience">
+          <span class="tag">Tourism</span>
+          <div class="body">
+            <h3>Tourism</h3>
+            <p>Make your destination feel worth the visit.</p>
+            <span class="link">Explore <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+          </div>
+        </a>
+
+        <a href="/museums/" class="industry-card reveal">
+          <img src="https://img.youtube.com/vi/2zahwXhfjD8/hqdefault.jpg" alt="Museum visitor trail experience">
+          <span class="tag">Culture</span>
+          <div class="body">
+            <h3>Museums</h3>
+            <p>Bring your collection to life for every visitor.</p>
             <span class="link">Explore <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
           </div>
         </a>
@@ -185,6 +235,7 @@
           <div class="body">
             <h3>Quest</h3>
             <p>Story-driven trails that lead participants on a journey of discovery across your venue.</p>
+            <a href="/quest/" class="link">Explore Quest <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
         </div>
 
@@ -197,6 +248,7 @@
           <div class="body">
             <h3>Lockbox</h3>
             <p>Puzzle-and-clue challenges that get teams and families solving, exploring and competing together.</p>
+            <a href="/lockbox/" class="link">Explore Lockbox <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
         </div>
 
@@ -209,6 +261,7 @@
           <div class="body">
             <h3>Interactive Digital Games</h3>
             <p>Motion-sensor and screen-based games that draw a crowd and keep them playing.</p>
+            <a href="/digital-games/" class="link">Explore Digital Games <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
           </div>
         </div>
 
@@ -311,27 +364,27 @@
     </div>
   </section>
 
-  <!-- ============ PULSE IN ACTION ============ -->
-  <section class="section section-alt" id="in-action">
+  <!-- ============ CASE STUDIES ============ -->
+  <section class="section section-alt" id="case-studies">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Pulse In Action</span>
-        <h2>See The Experiences Live</h2>
-        <p class="lead">A closer look at activations across retail, sport and live events.</p>
+        <span class="eyebrow">Case Studies</span>
+        <h2>A Closer Look At Our Work</h2>
+        <p class="lead">Project highlights from across retail, sport and hospitality venues.</p>
       </div>
       <div class="grid grid-3">
         <div class="video-wrap rounded reveal" data-yt="WFkCioreFD4">
-          <img class="video-thumb" src="https://img.youtube.com/vi/WFkCioreFD4/hqdefault.jpg" alt="Shopping centre activation in action" loading="lazy">
+          <img class="video-thumb" src="https://img.youtube.com/vi/WFkCioreFD4/hqdefault.jpg" alt="Shopping centre activation case study" loading="lazy">
           <span class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
           <span class="vlabel">Shopping Centre Trail</span>
         </div>
         <div class="video-wrap rounded reveal" data-yt="WNwgewBTj1M">
-          <img class="video-thumb" src="https://img.youtube.com/vi/WNwgewBTj1M/hqdefault.jpg" alt="Stadium fan zone in action" loading="lazy">
+          <img class="video-thumb" src="https://img.youtube.com/vi/WNwgewBTj1M/hqdefault.jpg" alt="Stadium fan zone case study" loading="lazy">
           <span class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
           <span class="vlabel">Matchday Fan Zone</span>
         </div>
         <div class="video-wrap rounded reveal" data-yt="2zahwXhfjD8">
-          <img class="video-thumb" src="https://img.youtube.com/vi/2zahwXhfjD8/hqdefault.jpg" alt="Hospitality experience in action" loading="lazy">
+          <img class="video-thumb" src="https://img.youtube.com/vi/2zahwXhfjD8/hqdefault.jpg" alt="Hospitality experience case study" loading="lazy">
           <span class="play-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
           <span class="vlabel">Guest Experience</span>
         </div>
@@ -362,11 +415,21 @@
         <p>Interactive experiences that drive engagement — fan engagement, experiential activations and venue experiences designed to increase participation, dwell time and measurable ROI.</p>
       </div>
       <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="/quest/">Quest</a></li>
+          <li><a href="/lockbox/">Lockbox</a></li>
+          <li><a href="/digital-games/">Digital Games</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
         <h4>Industries</h4>
         <ul>
           <li><a href="/shopping-centres/">Shopping Centres</a></li>
           <li><a href="/sports-stadiums/">Sports &amp; Stadiums</a></li>
-          <li><a href="/hospitality-tourism/">Hospitality &amp; Tourism</a></li>
+          <li><a href="/hospitality/">Hospitality</a></li>
+          <li><a href="/tourism/">Tourism</a></li>
+          <li><a href="/museums/">Museums</a></li>
           <li><a href="/awards-branding/">Awards &amp; Branding</a></li>
         </ul>
       </div>
