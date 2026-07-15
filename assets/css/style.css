@@ -478,9 +478,38 @@ body.nav-open{ overflow:hidden; }
   max-width: 620px;
   font-size: clamp(16px, 1.6vw, 19px);
   color: #cdd6de;
-  margin-bottom: 36px;
+  margin-bottom: 20px;
 }
+.hero .hero-proof{
+  display:flex; align-items:flex-start; gap:10px;
+  max-width: 560px;
+  font-family:'Rajdhani',sans-serif; font-weight:600; font-size:14px; letter-spacing:0.015em;
+  color: var(--blue-2);
+  margin-bottom: 32px;
+}
+.hero .hero-proof svg{ flex-shrink:0; margin-top:2px; color: var(--blue-2); }
 .hero-actions{ display:flex; flex-wrap:wrap; gap:16px; align-items:center; }
+
+/* ---------------------------------- Trust strip ---------------------------------- */
+.trust-strip{ background: var(--panel); border-bottom:1px solid var(--line); padding: 20px 0; }
+.trust-strip-inner{ display:flex; justify-content:center; text-align:center; }
+.trust-strip-label{ font-family:'Rajdhani',sans-serif; font-weight:600; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color: var(--muted); }
+
+/* ---------------------------------- Case study cards ---------------------------------- */
+.case-study-card{ background: var(--panel); border:1px solid var(--line); border-radius: var(--radius-lg); overflow:hidden; }
+.case-study-card .video-wrap{ aspect-ratio:16/10; border-radius:0; }
+.case-study-body{ padding:24px 26px 28px; }
+.case-study-body h3{ font-size:19px; margin-bottom:16px; }
+.case-study-meta{ display:flex; flex-direction:column; gap:13px; margin:0; }
+.case-study-meta dt{ font-family:'Rajdhani',sans-serif; font-weight:700; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color: var(--blue-2); margin-bottom:3px; }
+.case-study-meta dd{ font-size:13.5px; color: var(--muted); line-height:1.6; margin:0; }
+
+/* ---------------------------------- Homepage embedded contact form ---------------------------------- */
+.home-contact-form{
+  max-width: 640px; margin: 0 auto;
+  background: var(--panel); border:1px solid var(--line); border-radius: var(--radius-lg);
+  padding: clamp(28px,4vw,44px);
+}
 .hero-scroll{
   position:absolute; bottom: 28px; left:50%; transform:translateX(-50%);
   z-index:2; display:flex; flex-direction:column; align-items:center; gap:8px;
