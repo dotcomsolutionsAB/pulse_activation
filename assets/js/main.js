@@ -164,4 +164,113 @@
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
+
+  /* ---------- Cookie consent banner ---------- */
+  (function () {
+    var banner = document.getElementById("cookieBanner");
+    if (!banner) return;
+    var STORAGE_KEY = "pulse_cookie_consent";
+    var acceptBtn = document.getElementById("cookieAccept");
+    var declineBtn = document.getElementById("cookieDecline");
+
+    var stored;
+    try {
+      stored = window.localStorage.getItem(STORAGE_KEY);
+    } catch (e) {
+      stored = null; // localStorage unavailable (private browsing, etc.)
+    }
+
+    function hideBanner() {
+      banner.classList.remove("is-visible");
+    }
+    function setConsent(value) {
+      try {
+        window.localStorage.setItem(STORAGE_KEY, value);
+      } catch (e) {
+        /* ignore — nothing more we can do */
+      }
+      hideBanner();
+    }
+
+    if (!stored) {
+      // Show after a brief delay so it doesn't block first paint.
+      window.setTimeout(function () {
+        banner.classList.add("is-visible");
+      }, 600);
+    }
+
+    if (acceptBtn) acceptBtn.addEventListener("click", function () { setConsent("accepted"); });
+    if (declineBtn) declineBtn.addEventListener("click", function () { setConsent("declined"); });
+  })();
+
+  /* ---------- Contact form: real submission, confirmation, spam protection ----------
+     Markup expected:
+     <form id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+       <input type="text" name="_gotcha" class="hp-field" tabindex="-1" autocomplete="off"> (honeypot)
+       ...fields...
+       <button type="submit" id="contact-submit">Send Enquiry</button>
+       <div id="contact-form-success" hidden>...</div>
+       <div id="contact-form-error" hidden>...</div>
+     </form>
+     Spam protection: a honeypot field bots tend to fill in, plus a minimum
+     time-on-page check (genuine visitors take more than a couple of seconds
+     to fill in a form; bots that submit instantly are silently discarded).
+  */
+  (function () {
+    var form = document.getElementById("contact-form");
+    if (!form) return;
+
+    var loadTime = Date.now();
+    var submitBtn = document.getElementById("contact-submit");
+    var successEl = document.getElementById("contact-form-success");
+    var errorEl = document.getElementById("contact-form-error");
+    var noteEl = document.getElementById("contact-form-note");
+    var MIN_FILL_TIME_MS = 2500;
+
+    function showSuccess() {
+      form.hidden = true;
+      if (noteEl) noteEl.hidden = true;
+      if (successEl) successEl.hidden = false;
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (errorEl) errorEl.hidden = true;
+
+      var honeypot = form.querySelector('[name="_gotcha"]');
+      var elapsed = Date.now() - loadTime;
+      var looksLikeSpam = (honeypot && honeypot.value) || elapsed < MIN_FILL_TIME_MS;
+
+      if (looksLikeSpam) {
+        // Don't tip off the bot — show success without actually submitting.
+        showSuccess();
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+      }
+
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" },
+      })
+        .then(function (response) {
+          if (response.ok) {
+            showSuccess();
+          } else {
+            throw new Error("Submission failed");
+          }
+        })
+        .catch(function () {
+          if (errorEl) errorEl.hidden = false;
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Send Enquiry";
+          }
+        });
+    });
+  })();
 })();

@@ -517,6 +517,9 @@ body.nav-open{ overflow:hidden; }
   gap: clamp(28px, 5vw, 64px);
   align-items:center;
 }
+.cat-hero.legal-hero{ padding-bottom: clamp(40px,6vw,64px); }
+.cat-hero.legal-hero .cat-hero-grid{ grid-template-columns: 1fr; max-width:780px; }
+.cat-hero.legal-hero .cat-hero-text .hero-lead{ max-width:640px; }
 .cat-hero-crumb{
   display:flex; align-items:center; gap:8px;
   font-family:'Rajdhani',sans-serif; font-weight:600; font-size:12.5px; letter-spacing:0.08em; text-transform:uppercase;
@@ -860,6 +863,53 @@ body.nav-open{ overflow:hidden; }
 }
 .footer-bottom a{ color: var(--muted-2); }
 .footer-bottom a:hover{ color: var(--blue-2); }
+.footer-legal{ display:flex; gap:18px; flex-wrap:wrap; }
+
+/* ---------------------------------- Cookie consent banner ---------------------------------- */
+.cookie-banner{
+  position: fixed; left:20px; right:20px; bottom:20px; z-index: 2000;
+  max-width: 620px; margin: 0 auto;
+  background: rgba(8,11,16,0.98);
+  backdrop-filter: blur(16px) saturate(140%);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 48px rgba(0,0,0,0.45);
+  padding: 20px 22px;
+  display:flex; flex-wrap:wrap; align-items:center; gap:16px;
+  transform: translateY(140%);
+  opacity: 0;
+  transition: transform .35s var(--ease), opacity .35s var(--ease);
+  pointer-events: none;
+}
+.cookie-banner.is-visible{ transform: translateY(0); opacity:1; pointer-events:auto; }
+.cookie-banner p{ font-size:13.5px; color: var(--muted); flex:1 1 260px; margin:0; }
+.cookie-banner p a{ color: var(--blue-2); }
+.cookie-banner .cookie-actions{ display:flex; gap:10px; flex-shrink:0; }
+.cookie-banner .btn{ padding:9px 16px; font-size:12.5px; }
+@media (max-width:480px){
+  .cookie-banner{ left:12px; right:12px; bottom:12px; padding:18px; }
+}
+
+/* ---------------------------------- Legal pages ---------------------------------- */
+.legal-content{ max-width: 780px; }
+.legal-content h2{ font-size: clamp(22px,3vw,28px); margin: 40px 0 14px; }
+.legal-content h2:first-child{ margin-top:0; }
+.legal-content h3{ font-family:'Rajdhani',sans-serif; font-size:17px; letter-spacing:0.02em; color: var(--text); margin: 24px 0 10px; }
+.legal-content p{ color: var(--muted); font-size:15px; line-height:1.75; margin-bottom:14px; }
+.legal-content ul{ margin: 0 0 16px 20px; color: var(--muted); font-size:15px; line-height:1.75; }
+.legal-content li{ margin-bottom:8px; }
+.legal-content a{ color: var(--blue-2); }
+.legal-content .updated-note{ color: var(--muted-2); font-size:13px; margin-bottom:32px; }
+.legal-content .placeholder{ color: var(--blue-2); background: rgba(41,182,255,0.09); padding:1px 5px; border-radius:4px; }
+
+/* ---------------------------------- Contact form states ---------------------------------- */
+.form-success, .form-error{
+  border-radius: var(--radius); padding: 16px 18px; font-size:14.5px; line-height:1.6;
+}
+.form-success{ background: rgba(41,182,255,0.09); border:1px solid rgba(41,182,255,0.3); color: var(--text); }
+.form-error{ background: rgba(255,90,90,0.08); border:1px solid rgba(255,90,90,0.3); color: var(--text); margin-bottom:14px; }
+.form-success strong, .form-error strong{ display:block; margin-bottom:4px; }
+.contact-form .hp-field{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
 
 /* ---------------------------------- Contact page specifics ---------------------------------- */
 .contact-grid{ display:grid; grid-template-columns: minmax(0,1fr) minmax(0,1.15fr); gap: clamp(32px,6vw,72px); align-items:start; }
