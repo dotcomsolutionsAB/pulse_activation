@@ -97,6 +97,7 @@ p:last-child{ margin-bottom:0; }
   margin-bottom: clamp(36px, 6vw, 64px);
 }
 .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+.section-head.wide{ max-width: 980px; }
 .section-head h2{ font-size: clamp(28px, 4.2vw, 46px); }
 .section-head .lead{ margin-top:16px; font-size: 17px; color: var(--muted); }
 
