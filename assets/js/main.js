@@ -59,6 +59,40 @@
     else a.classList.remove("active");
   });
 
+  /* ---------- Sector/experience lookup for analytics event context ----------
+     Defined here (immediately after `current` is computed) rather than
+     further down the file, because the autoplay hero-video code below runs
+     synchronously during page load — not from a later click — so it needs
+     pageInterest() available right away rather than only by the time click
+     handlers can fire. Event naming separates "sector" (an industry/venue
+     page — Shopping Centres, Museums, etc.) from "experience" (a format
+     page — Quest, Lockbox, AI & Photo, etc.) so GA4 reports can tell which
+     kind of intent a click reflects.
+  */
+  var SECTOR_PAGES = {
+    "shopping-centres": "Shopping Centres",
+    "sports-stadiums": "Sports & Stadiums",
+    "hotels-resorts": "Hotels & Resorts",
+    "marinas-waterfronts": "Marinas & Waterfronts",
+    "visitor-attractions": "Visitor Attractions",
+    "museums": "Museums",
+    "agencies-brands": "Agencies & Brands",
+    "awards-branding": "Award Ceremonies & Branding",
+  };
+  var EXPERIENCE_PAGES = {
+    "quest": "Quest",
+    "lockbox": "Lockbox",
+    "digital-games": "Interactive Digital Games",
+    "ai-photo": "AI & Photo Experiences",
+    "seasonal-experiences": "Seasonal Experiences",
+    "bespoke-builds": "Bespoke Builds",
+  };
+  function pageInterest() {
+    if (SECTOR_PAGES[current]) return { interest_type: "sector", interest_name: SECTOR_PAGES[current] };
+    if (EXPERIENCE_PAGES[current]) return { interest_type: "experience", interest_name: EXPERIENCE_PAGES[current] };
+    return { interest_type: "other", interest_name: current };
+  }
+
   /* ---------- Reveal on scroll ---------- */
   var revealEls = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && revealEls.length) {
@@ -138,40 +172,100 @@
       wrap.appendChild(iframe);
       wrap.appendChild(fallback); // keep the fallback link on top as a safety net
       wrap.removeEventListener("click", loadVideo);
+      var ctx = pageInterest();
+      trackEvent("video_play", {
+        video_id: id,
+        interest_type: ctx.interest_type,
+        interest_name: ctx.interest_name,
+      });
     });
   });
 
-  /* ---------- Background hero YouTube (autoplay, muted, looping) ---------- */
-  document.querySelectorAll("[data-yt-bg]").forEach(function (el) {
-    var id = el.getAttribute("data-yt-bg");
-    var src =
-      "https://www.youtube.com/embed/" +
-      id +
-      "?autoplay=1&mute=1&loop=1&playlist=" +
-      id +
-      "&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1" +
-      (pageOrigin ? "&origin=" + encodeURIComponent(pageOrigin) : "");
-    var iframe = document.createElement("iframe");
-    iframe.className = "yt-cover yt-bg-frame";
-    iframe.setAttribute("src", src);
-    iframe.setAttribute("frameborder", "0");
-    iframe.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture");
-    iframe.setAttribute("tabindex", "-1");
-    el.appendChild(iframe);
-  });
+  /* ---------- Background hero YouTube (autoplay, muted, looping) ----------
+     Skipped entirely for visitors who have asked for reduced motion, or
+     whose connection reports Save-Data / a slow effective type — those
+     visitors get the static poster image (already set as the element's
+     background-image) instead of an autoplaying video iframe. This keeps
+     the hero honest about bandwidth and respects prefers-reduced-motion
+     rather than forcing motion on everyone regardless of their settings.
+  */
+  var prefersReducedMotion =
+    "matchMedia" in window && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var conn = navigator.connection || navigator.webkitConnection || navigator.mozConnection;
+  var prefersReducedData =
+    !!conn &&
+    (conn.saveData === true ||
+      conn.effectiveType === "slow-2g" ||
+      conn.effectiveType === "2g" ||
+      conn.effectiveType === "3g");
+
+  if (!prefersReducedMotion && !prefersReducedData) {
+    document.querySelectorAll("[data-yt-bg]").forEach(function (el) {
+      var id = el.getAttribute("data-yt-bg");
+      var src =
+        "https://www.youtube.com/embed/" +
+        id +
+        "?autoplay=1&mute=1&loop=1&playlist=" +
+        id +
+        "&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&iv_load_policy=3&disablekb=1" +
+        (pageOrigin ? "&origin=" + encodeURIComponent(pageOrigin) : "");
+      var iframe = document.createElement("iframe");
+      iframe.className = "yt-cover yt-bg-frame";
+      iframe.setAttribute("src", src);
+      iframe.setAttribute("frameborder", "0");
+      iframe.setAttribute("allow", "autoplay; encrypted-media; picture-in-picture");
+      iframe.setAttribute("tabindex", "-1");
+      el.appendChild(iframe);
+      var ctx = pageInterest();
+      trackEvent("video_play", {
+        video_id: id,
+        video_context: "hero_background_autoplay",
+        interest_type: ctx.interest_type,
+        interest_name: ctx.interest_name,
+      });
+    });
+  } else {
+    // Mark the element so CSS can, if desired, tweak the static-poster
+    // presentation (e.g. a subtle "video paused for you" affordance).
+    document.querySelectorAll("[data-yt-bg]").forEach(function (el) {
+      el.classList.add("hero-bg-static");
+    });
+  }
 
   /* ---------- Current year in footer ---------- */
   document.querySelectorAll("[data-year]").forEach(function (el) {
     el.textContent = new Date().getFullYear();
   });
 
+  /* ---------- Analytics (GA4) — loaded only after cookie consent ----------
+     Replace GA_MEASUREMENT_ID below with your real GA4 Measurement ID
+     (sign up free at analytics.google.com, create a GA4 property, and swap
+     the ID here). Until then no analytics script is ever loaded — this is
+     intentional: the site should not fetch or run a tracking script for a
+     visitor who hasn't consented.
+  */
+  var GA_MEASUREMENT_ID = "G-XXXXXXXXXX";
+  var analyticsLoaded = false;
+  function loadAnalytics() {
+    if (analyticsLoaded || GA_MEASUREMENT_ID.indexOf("XXXX") !== -1) return;
+    analyticsLoaded = true;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_MEASUREMENT_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { window.dataLayer.push(arguments); };
+    window.gtag("js", new Date());
+    window.gtag("config", GA_MEASUREMENT_ID);
+  }
+  function trackEvent(name, params) {
+    if (typeof window.gtag === "function") window.gtag("event", name, params || {});
+  }
+
   /* ---------- Cookie consent banner ---------- */
   (function () {
     var banner = document.getElementById("cookieBanner");
-    if (!banner) return;
     var STORAGE_KEY = "pulse_cookie_consent";
-    var acceptBtn = document.getElementById("cookieAccept");
-    var declineBtn = document.getElementById("cookieDecline");
 
     var stored;
     try {
@@ -179,6 +273,12 @@
     } catch (e) {
       stored = null; // localStorage unavailable (private browsing, etc.)
     }
+
+    if (stored === "accepted") loadAnalytics();
+
+    if (!banner) return;
+    var acceptBtn = document.getElementById("cookieAccept");
+    var declineBtn = document.getElementById("cookieDecline");
 
     function hideBanner() {
       banner.classList.remove("is-visible");
@@ -189,6 +289,7 @@
       } catch (e) {
         /* ignore — nothing more we can do */
       }
+      if (value === "accepted") loadAnalytics();
       hideBanner();
     }
 
@@ -237,6 +338,14 @@
       e.preventDefault();
       if (errorEl) errorEl.hidden = true;
 
+      // The form carries novalidate so we control validation UX ourselves —
+      // this is what actually enforces required fields (name, email, message,
+      // consent) rather than leaving them decorative.
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+
       var honeypot = form.querySelector('[name="_gotcha"]');
       var elapsed = Date.now() - loadTime;
       var looksLikeSpam = (honeypot && honeypot.value) || elapsed < MIN_FILL_TIME_MS;
@@ -259,6 +368,7 @@
       })
         .then(function (response) {
           if (response.ok) {
+            trackEvent("generate_lead", { form_name: "contact_form" });
             showSuccess();
           } else {
             throw new Error("Submission failed");
@@ -273,4 +383,73 @@
         });
     });
   })();
+
+  /* ---------- Discovery call booking: conversion tracking ---------- */
+  document.querySelectorAll("[data-discovery-call]").forEach(function (el) {
+    el.addEventListener("click", function () {
+      trackEvent("book_discovery_call", { link_text: el.textContent.trim() });
+    });
+  });
+
+  // CTA button clicks — every .btn sitewide (primary/outline/ghost), tagged
+  // with its destination and label plus which sector/experience page it was
+  // clicked from.
+  document.addEventListener("click", function (e) {
+    var btn = e.target.closest(".btn");
+    if (btn && !btn.hasAttribute("data-discovery-call")) {
+      var ctx = pageInterest();
+      trackEvent("cta_click", {
+        cta_text: btn.textContent.trim(),
+        cta_href: btn.getAttribute("href") || "",
+        interest_type: ctx.interest_type,
+        interest_name: ctx.interest_name,
+      });
+    }
+  });
+
+  // Phone number clicks (tel: links) — sitewide, including ones that aren't
+  // styled as a .btn (header nav-phone, contact card, mobile bar, footer).
+  document.addEventListener("click", function (e) {
+    var link = e.target.closest('a[href^="tel:"]');
+    if (link) {
+      var ctx = pageInterest();
+      trackEvent("click_phone", {
+        link_text: link.textContent.trim(),
+        interest_type: ctx.interest_type,
+        interest_name: ctx.interest_name,
+      });
+    }
+  });
+
+  // Email link clicks (mailto: links).
+  document.addEventListener("click", function (e) {
+    var link = e.target.closest('a[href^="mailto:"]');
+    if (link) {
+      var ctx = pageInterest();
+      trackEvent("click_email", {
+        link_text: link.textContent.trim(),
+        interest_type: ctx.interest_type,
+        interest_name: ctx.interest_name,
+      });
+    }
+  });
+
+  // Brochure / document downloads — no brochure file exists on the site yet,
+  // so this listener currently has nothing to attach to and will not fire.
+  // It's wired up so that as soon as a real PDF/brochure link is added
+  // anywhere (either via href ending in a document extension, or an
+  // explicit data-track-download attribute), it starts tracking with no
+  // further code changes needed.
+  document.addEventListener("click", function (e) {
+    var link = e.target.closest('a[data-track-download], a[href$=".pdf"], a[href$=".doc"], a[href$=".docx"]');
+    if (link) {
+      var ctx = pageInterest();
+      trackEvent("file_download", {
+        link_text: link.textContent.trim(),
+        file_url: link.getAttribute("href") || "",
+        interest_type: ctx.interest_type,
+        interest_name: ctx.interest_name,
+      });
+    }
+  });
 })();
