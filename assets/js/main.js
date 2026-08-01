@@ -181,6 +181,17 @@
     });
   });
 
+  /* ---------- Hero background slideshow (crossfading montage) ---------- */
+  var heroSlides = document.querySelectorAll(".hero-slideshow .hero-slide");
+  if (heroSlides.length > 1) {
+    var heroSlideIndex = 0;
+    setInterval(function () {
+      heroSlides[heroSlideIndex].classList.remove("is-active");
+      heroSlideIndex = (heroSlideIndex + 1) % heroSlides.length;
+      heroSlides[heroSlideIndex].classList.add("is-active");
+    }, 5500);
+  }
+
   /* ---------- Background hero YouTube (autoplay, muted, looping) ----------
      Skipped entirely for visitors who have asked for reduced motion, or
      whose connection reports Save-Data / a slow effective type — those
